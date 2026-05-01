@@ -627,32 +627,6 @@
     </div>
   </div>
 
-  <!-- Footer info -->
-  <div class="footer-card">
-    <p>
-      헤어질 때는 <strong>블언블</strong> 💌<br>
-      NG는 <strong>알아서 피함</strong> 🌙<br>
-      마누라 앓이 계정입니다 ♡
-    </p>
-  </div>
-
-  <!-- 카카오톡 채널 -->
-  <div class="kakao-section">
-    <div class="kakao-section-label">💛 contact</div>
-    <a class="kakao-card" href="https://open.kakao.com/o/sUYv0Usi" target="_blank" rel="noopener noreferrer">
-      <span class="kakao-chip">💬 오픈채팅</span>
-      <div class="kakao-inner">
-        <div class="kakao-icon">🐣</div>
-        <div class="kakao-texts">
-          <div class="kakao-eyebrow">KakaoTalk Channel</div>
-          <div class="kakao-name">부쟈의 카카오톡 채널</div>
-          <div class="kakao-url">open.kakao.com/o/sUYv0Usi</div>
-        </div>
-        <div class="kakao-btn">→</div>
-      </div>
-    </a>
-  </div>
-
   <!-- Stamp -->
   <div class="stamp">
     <div class="stamp-inner">✦ 부쟈 · since 성인 · 꽃길만 ✦</div>
