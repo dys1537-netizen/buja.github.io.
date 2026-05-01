@@ -1,5 +1,4 @@
 
-<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -34,13 +33,11 @@
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='%23F2A7B3' opacity='0.7'/%3E%3C/svg%3E"), auto;
   }
 
-  /* Floating deco elements */
   .deco-bg {
     position: fixed;
     pointer-events: none;
     z-index: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     top: 0; left: 0;
     overflow: hidden;
   }
@@ -72,7 +69,6 @@
     50% { opacity: 1; transform: scale(1.3) rotate(15deg); }
   }
 
-  /* Main layout */
   .wrapper {
     position: relative;
     z-index: 1;
@@ -81,7 +77,6 @@
     padding: 40px 20px 80px;
   }
 
-  /* Header */
   .site-header {
     text-align: center;
     margin-bottom: 32px;
@@ -133,7 +128,6 @@
     text-transform: uppercase;
   }
 
-  /* Photo card */
   .photo-section {
     display: flex;
     justify-content: center;
@@ -191,19 +185,9 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  .badge-top {
-    top: -12px; right: -12px;
-    color: var(--accent);
-    animation-delay: 0.8s;
-  }
+  .badge-top { top: -12px; right: -12px; color: var(--accent); animation-delay: 0.8s; }
+  .badge-bottom { bottom: -12px; left: -12px; color: #9b7ed4; animation-delay: 1s; }
 
-  .badge-bottom {
-    bottom: -12px; left: -12px;
-    color: #9b7ed4;
-    animation-delay: 1s;
-  }
-
-  /* Name section */
   .name-section {
     text-align: center;
     margin-bottom: 28px;
@@ -238,7 +222,6 @@
     letter-spacing: 3px;
   }
 
-  /* Info cards */
   .cards-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -272,15 +255,9 @@
     box-shadow: 0 8px 24px rgba(200,160,180,0.2);
   }
 
-  .card.full {
-    grid-column: 1 / -1;
-  }
+  .card.full { grid-column: 1 / -1; }
 
-  .card-emoji {
-    font-size: 22px;
-    margin-bottom: 6px;
-    display: block;
-  }
+  .card-emoji { font-size: 22px; margin-bottom: 6px; display: block; }
 
   .card-label {
     font-size: 10px;
@@ -312,17 +289,12 @@
   .tag-yellow { background: var(--soft-yellow); color: #a08530; }
   .tag-mint { background: var(--mint); color: #3a8a68; }
 
-  /* Activity bar */
   .activity-section {
     animation: fadeUp 0.9s 0.65s ease both;
     margin-bottom: 16px;
   }
 
-  .activity-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .activity-bars { display: flex; flex-direction: column; gap: 8px; }
 
   .bar-row {
     display: flex;
@@ -335,20 +307,9 @@
     box-shadow: 0 2px 10px rgba(200,160,180,0.08);
   }
 
-  .bar-label {
-    font-size: 12px;
-    color: var(--text-mid);
-    width: 80px;
-    flex-shrink: 0;
-  }
+  .bar-label { font-size: 12px; color: var(--text-mid); width: 80px; flex-shrink: 0; }
 
-  .bar-track {
-    flex: 1;
-    height: 8px;
-    background: var(--butter);
-    border-radius: 10px;
-    overflow: hidden;
-  }
+  .bar-track { flex: 1; height: 8px; background: var(--butter); border-radius: 10px; overflow: hidden; }
 
   .bar-fill {
     height: 100%;
@@ -356,23 +317,14 @@
     animation: growBar 1.2s cubic-bezier(0.34,1.1,0.64,1) both;
   }
 
-  @keyframes growBar {
-    from { width: 0 !important; }
-  }
+  @keyframes growBar { from { width: 0 !important; } }
 
   .bar-fill.pink { background: linear-gradient(90deg, var(--warm-pink), #f4c0ca); animation-delay: 0.8s; }
   .bar-fill.purple { background: linear-gradient(90deg, var(--lilac), #c4aaee); animation-delay: 0.95s; }
   .bar-fill.yellow { background: linear-gradient(90deg, #f0d060, #f5e68a); animation-delay: 1.1s; }
 
-  .bar-pct {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--accent);
-    width: 32px;
-    text-align: right;
-  }
+  .bar-pct { font-size: 11px; font-weight: 700; color: var(--accent); width: 32px; text-align: right; }
 
-  /* Footer card */
   .footer-card {
     animation: fadeUp 0.9s 0.8s ease both;
     text-align: center;
@@ -384,18 +336,157 @@
     margin-bottom: 16px;
   }
 
-  .footer-card p {
-    font-size: 12px;
+  .footer-card p { font-size: 12px; color: var(--text-mid); line-height: 2; }
+  .footer-card strong { color: var(--accent); font-weight: 600; }
+
+  /* ══════════════════════════
+     카카오톡 채널 링크 카드
+  ══════════════════════════ */
+  .kakao-section {
+    animation: fadeUp 0.9s 0.88s ease both;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  /* 위에 붙는 귀여운 라벨 */
+  .kakao-section-label {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
     color: var(--text-mid);
-    line-height: 2;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
 
-  .footer-card strong {
-    color: var(--accent);
-    font-weight: 600;
+  .kakao-section-label::before,
+  .kakao-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(242,167,179,0.4));
   }
 
-  /* Bottom stamp */
+  .kakao-section-label::after {
+    background: linear-gradient(90deg, rgba(242,167,179,0.4), transparent);
+  }
+
+  /* 카드 자체 */
+  .kakao-card {
+    display: block;
+    text-decoration: none;
+    background: white;
+    border-radius: 18px;
+    border: 1.5px solid rgba(254,229,0,0.5);
+    box-shadow: 0 2px 16px rgba(254,229,0,0.12), 0 2px 8px rgba(200,160,180,0.08);
+    overflow: visible;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .kakao-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #FEE500, #ffe878, #FEE500);
+    border-radius: 18px 18px 0 0;
+  }
+
+  .kakao-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 32px rgba(254,229,0,0.2), 0 4px 12px rgba(200,160,180,0.1);
+  }
+
+  /* 오픈채팅 뱃지 */
+  .kakao-chip {
+    position: absolute;
+    top: -11px; right: 16px;
+    background: #FEE500;
+    color: #7a5e00;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    padding: 3px 11px;
+    border-radius: 20px;
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(254,229,0,0.35);
+    white-space: nowrap;
+  }
+
+  .kakao-inner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 16px;
+  }
+
+  /* 아이콘 */
+  .kakao-icon {
+    width: 50px; height: 50px;
+    border-radius: 15px;
+    background: #FEE500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(254,229,0,0.4);
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  /* 텍스트 */
+  .kakao-texts { flex: 1; min-width: 0; }
+
+  .kakao-eyebrow {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c8a800;
+    margin-bottom: 3px;
+  }
+
+  .kakao-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .kakao-url {
+    font-size: 10px;
+    color: #b8a8b0;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* 화살표 버튼 */
+  .kakao-btn {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: #FEE500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+    color: #7a5e00;
+    font-weight: 700;
+  }
+
+  .kakao-card:hover .kakao-btn { transform: translateX(4px); }
+
+  /* ── stamp ── */
   .stamp {
     text-align: center;
     animation: fadeUp 0.9s 0.95s ease both;
@@ -411,7 +502,7 @@
     letter-spacing: 2px;
   }
 
-  /* Floating hearts */
+  /* floating hearts */
   .heart-float {
     position: fixed;
     font-size: 16px;
@@ -429,10 +520,8 @@
 </head>
 <body>
 
-<!-- Deco background bubbles -->
 <div class="deco-bg" id="decoBg"></div>
 
-<!-- Stars -->
 <div class="star-deco" style="top:8%;left:5%;animation-delay:0s">✦</div>
 <div class="star-deco" style="top:15%;right:8%;animation-delay:1s;color:var(--lilac)">✧</div>
 <div class="star-deco" style="top:40%;left:3%;animation-delay:2s;color:var(--warm-pink)">✦</div>
@@ -442,7 +531,7 @@
 
 <div class="wrapper">
 
-  <!-- Header marquee -->
+  <!-- Header -->
   <header class="site-header">
     <div class="marquee-wrap">
       <span class="marquee-text">
@@ -467,9 +556,8 @@
     <p class="name-sub">성인 &nbsp;·&nbsp; 블언블 &nbsp;·&nbsp; 마누라 앓이 95%</p>
   </div>
 
-  <!-- Info cards grid -->
+  <!-- Info cards -->
   <div class="cards-grid">
-
     <div class="card">
       <span class="card-emoji">🌸</span>
       <div class="card-label">Platform</div>
@@ -502,8 +590,7 @@
       <div class="card-value">
         <span class="tag tag-purple">BL</span>
         <span class="tag tag-pink">GL</span>
-        <span class="tag tag-mint">HL</span>
-        <br>
+        <span class="tag tag-mint">HL</span><br>
         <span style="font-size:11px;color:var(--text-mid)">다 먹음 ♡</span>
       </div>
     </div>
@@ -513,7 +600,6 @@
       <div class="card-label">NG</div>
       <div class="card-value">알아서 피함 👀</div>
     </div>
-
   </div>
 
   <!-- Activity bars -->
@@ -524,23 +610,17 @@
       <div class="activity-bars">
         <div class="bar-row">
           <span class="bar-label">마누라 앓이</span>
-          <div class="bar-track">
-            <div class="bar-fill pink" style="width:95%"></div>
-          </div>
+          <div class="bar-track"><div class="bar-fill pink" style="width:95%"></div></div>
           <span class="bar-pct">95%</span>
         </div>
         <div class="bar-row">
           <span class="bar-label">소비</span>
-          <div class="bar-track">
-            <div class="bar-fill purple" style="width:40%"></div>
-          </div>
+          <div class="bar-track"><div class="bar-fill purple" style="width:40%"></div></div>
           <span class="bar-pct">4%</span>
         </div>
         <div class="bar-row">
           <span class="bar-label">제작</span>
-          <div class="bar-track">
-            <div class="bar-fill yellow" style="width:10%"></div>
-          </div>
+          <div class="bar-track"><div class="bar-fill yellow" style="width:10%"></div></div>
           <span class="bar-pct">1%</span>
         </div>
       </div>
@@ -556,6 +636,23 @@
     </p>
   </div>
 
+  <!-- 카카오톡 채널 -->
+  <div class="kakao-section">
+    <div class="kakao-section-label">💛 contact</div>
+    <a class="kakao-card" href="https://open.kakao.com/o/sUYv0Usi" target="_blank" rel="noopener noreferrer">
+      <span class="kakao-chip">💬 오픈채팅</span>
+      <div class="kakao-inner">
+        <div class="kakao-icon">🐣</div>
+        <div class="kakao-texts">
+          <div class="kakao-eyebrow">KakaoTalk Channel</div>
+          <div class="kakao-name">부쟈의 카카오톡 채널</div>
+          <div class="kakao-url">open.kakao.com/o/sUYv0Usi</div>
+        </div>
+        <div class="kakao-btn">→</div>
+      </div>
+    </a>
+  </div>
+
   <!-- Stamp -->
   <div class="stamp">
     <div class="stamp-inner">✦ 부쟈 · since 성인 · 꽃길만 ✦</div>
@@ -564,7 +661,6 @@
 </div>
 
 <script>
-  // Floating bubbles background
   const bg = document.getElementById('decoBg');
   const colors = ['#F2A7B3','#D9C5F0','#F9EFA3','#C5E8D9','#F7D1D8'];
   for (let i = 0; i < 12; i++) {
@@ -581,7 +677,6 @@
     bg.appendChild(b);
   }
 
-  // Click heart effect
   document.body.addEventListener('click', (e) => {
     const hearts = ['♡','♥','˚✧','✦','☆'];
     const h = document.createElement('div');
