@@ -4,663 +4,505 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>부쟈의 프로필 ♡</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
+    --bg: #FDFAF4;
+    --butter: #F5E9C8;
+    --butter-dark: #E8D4A0;
     --cream: #FFF8EE;
-    --butter: #F5E6C8;
-    --soft-yellow: #F9EFA3;
-    --warm-pink: #F2A7B3;
-    --blush: #F7D1D8;
-    --lilac: #D9C5F0;
-    --mint: #C5E8D9;
-    --text-dark: #3a2e2e;
-    --text-mid: #7a6060;
-    --accent: #e88fa0;
+    --text: #2C2420;
+    --text-soft: #9A8A7A;
+    --line: rgba(200,170,130,0.25);
+    --yellow: #F0D060;
+    --pink: #F2B8C0;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background-color: var(--cream);
-    background-image:
-      radial-gradient(circle at 10% 20%, rgba(242,167,179,0.15) 0%, transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(217,197,240,0.2) 0%, transparent 40%),
-      radial-gradient(circle at 50% 50%, rgba(249,239,163,0.1) 0%, transparent 60%);
+    background: var(--bg);
     font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='%23F2A7B3' opacity='0.7'/%3E%3C/svg%3E"), auto;
   }
 
-  .deco-bg {
+  /* subtle noise texture overlay */
+  body::before {
+    content: '';
     position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 0;
-    width: 100%; height: 100%;
-    top: 0; left: 0;
-    overflow: hidden;
+    opacity: 0.4;
   }
 
-  .bubble {
-    position: absolute;
-    border-radius: 50%;
-    animation: floatBubble linear infinite;
-    opacity: 0.18;
-  }
-
-  @keyframes floatBubble {
-    0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
-    10% { opacity: 0.18; }
-    90% { opacity: 0.18; }
-    100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
-  }
-
-  .star-deco {
-    position: fixed;
-    font-size: 14px;
-    animation: twinkle 3s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
-    50% { opacity: 1; transform: scale(1.3) rotate(15deg); }
-  }
-
-  .wrapper {
+  .page {
     position: relative;
     z-index: 1;
-    max-width: 600px;
+    max-width: 480px;
     margin: 0 auto;
-    padding: 40px 20px 80px;
-  }
-
-  .site-header {
-    text-align: center;
-    margin-bottom: 32px;
-    animation: fadeDown 0.8s ease forwards;
-  }
-
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .marquee-wrap {
-    overflow: hidden;
-    background: linear-gradient(90deg, var(--warm-pink), var(--lilac), var(--soft-yellow), var(--mint), var(--warm-pink));
-    background-size: 300% 100%;
-    animation: gradShift 4s ease infinite;
-    border-radius: 30px;
-    padding: 6px 0;
-    margin-bottom: 20px;
-  }
-
-  @keyframes gradShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .marquee-text {
-    display: inline-block;
-    white-space: nowrap;
-    animation: marqueeScroll 18s linear infinite;
-    font-size: 12px;
-    font-weight: 500;
-    color: white;
-    letter-spacing: 2px;
-  }
-
-  @keyframes marqueeScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .site-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    font-style: italic;
-    color: var(--text-mid);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-  }
-
-  .photo-section {
+    padding: 60px 28px 80px;
     display: flex;
-    justify-content: center;
-    margin-bottom: 28px;
-    animation: fadeUp 0.9s 0.2s ease both;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* ── ticker ── */
+  .ticker {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: fadeIn 0.6s 0.1s forwards;
   }
 
-  .photo-frame {
-    position: relative;
-    display: inline-block;
+  .ticker-inner {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll 22s linear infinite;
+    gap: 0;
   }
 
-  .photo-frame::before {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, var(--warm-pink), var(--lilac), var(--soft-yellow));
-    z-index: -1;
-    animation: rotateBorder 6s linear infinite;
-  }
-
-  @keyframes rotateBorder {
-    from { filter: hue-rotate(0deg); }
-    to { filter: hue-rotate(360deg); }
-  }
-
-  .photo-frame img {
-    width: 260px;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 20px;
-    display: block;
-    border: 4px solid white;
-  }
-
-  .photo-badge {
-    position: absolute;
-    background: white;
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-size: 11px;
-    font-weight: 700;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-    animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
-  }
-
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  .badge-top { top: -12px; right: -12px; color: var(--accent); animation-delay: 0.8s; }
-  .badge-bottom { bottom: -12px; left: -12px; color: #9b7ed4; animation-delay: 1s; }
-
-  .name-section {
-    text-align: center;
-    margin-bottom: 28px;
-    animation: fadeUp 0.9s 0.35s ease both;
-  }
-
-  .name-tag {
-    display: inline-block;
-    font-family: 'Playfair Display', serif;
-    font-size: 38px;
-    font-weight: 700;
-    color: var(--text-dark);
-    position: relative;
-  }
-
-  .name-tag::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 8px;
-    background: linear-gradient(90deg, var(--warm-pink), var(--lilac));
-    border-radius: 4px;
-    opacity: 0.5;
-    z-index: -1;
-    transform: translateY(-2px);
-  }
-
-  .name-sub {
-    margin-top: 6px;
-    font-size: 12px;
-    color: var(--text-mid);
+  .ticker-text {
+    font-size: 10px;
     letter-spacing: 3px;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    padding-right: 60px;
+    flex-shrink: 0;
   }
 
-  .cards-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 16px;
-    animation: fadeUp 0.9s 0.5s ease both;
-  }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  .card {
-    background: white;
-    border-radius: 18px;
-    padding: 16px;
-    box-shadow: 0 2px 16px rgba(200,160,180,0.12);
-    border: 1.5px solid rgba(242,167,179,0.2);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  /* ── photo ── */
+  .photo-wrap {
     position: relative;
-    overflow: hidden;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: riseUp 0.8s 0.2s cubic-bezier(0.22,1,0.36,1) forwards;
   }
 
-  .card::before {
-    content: '';
+  .photo-deco {
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--warm-pink), var(--lilac));
-    border-radius: 18px 18px 0 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--butter);
+    top: 12px;
+    left: 12px;
+    z-index: 0;
   }
 
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(200,160,180,0.2);
-  }
-
-  .card.full { grid-column: 1 / -1; }
-
-  .card-emoji { font-size: 22px; margin-bottom: 6px; display: block; }
-
-  .card-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-
-  .card-value {
-    font-size: 14px;
-    color: var(--text-dark);
-    font-weight: 500;
-    line-height: 1.6;
-  }
-
-  .tag {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-    margin: 2px 2px 0 0;
-  }
-
-  .tag-pink { background: var(--blush); color: #c0687a; }
-  .tag-purple { background: var(--lilac); color: #7b52b8; }
-  .tag-yellow { background: var(--soft-yellow); color: #a08530; }
-  .tag-mint { background: var(--mint); color: #3a8a68; }
-
-  .activity-section {
-    animation: fadeUp 0.9s 0.65s ease both;
-    margin-bottom: 16px;
-  }
-
-  .activity-bars { display: flex; flex-direction: column; gap: 8px; }
-
-  .bar-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: white;
-    border-radius: 14px;
-    padding: 10px 14px;
-    border: 1.5px solid rgba(242,167,179,0.15);
-    box-shadow: 0 2px 10px rgba(200,160,180,0.08);
-  }
-
-  .bar-label { font-size: 12px; color: var(--text-mid); width: 80px; flex-shrink: 0; }
-
-  .bar-track { flex: 1; height: 8px; background: var(--butter); border-radius: 10px; overflow: hidden; }
-
-  .bar-fill {
-    height: 100%;
-    border-radius: 10px;
-    animation: growBar 1.2s cubic-bezier(0.34,1.1,0.64,1) both;
-  }
-
-  @keyframes growBar { from { width: 0 !important; } }
-
-  .bar-fill.pink { background: linear-gradient(90deg, var(--warm-pink), #f4c0ca); animation-delay: 0.8s; }
-  .bar-fill.purple { background: linear-gradient(90deg, var(--lilac), #c4aaee); animation-delay: 0.95s; }
-  .bar-fill.yellow { background: linear-gradient(90deg, #f0d060, #f5e68a); animation-delay: 1.1s; }
-
-  .bar-pct { font-size: 11px; font-weight: 700; color: var(--accent); width: 32px; text-align: right; }
-
-  .footer-card {
-    animation: fadeUp 0.9s 0.8s ease both;
-    text-align: center;
-    background: white;
-    border-radius: 18px;
-    padding: 16px;
-    box-shadow: 0 2px 16px rgba(200,160,180,0.12);
-    border: 1.5px solid rgba(242,167,179,0.2);
-    margin-bottom: 16px;
-  }
-
-  .footer-card p { font-size: 12px; color: var(--text-mid); line-height: 2; }
-  .footer-card strong { color: var(--accent); font-weight: 600; }
-
-  /* ══════════════════════════
-     카카오톡 채널 링크 카드
-  ══════════════════════════ */
-  .kakao-section {
-    animation: fadeUp 0.9s 0.88s ease both;
-    margin-bottom: 16px;
+  .photo {
     position: relative;
+    z-index: 1;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    display: block;
   }
 
-  /* 위에 붙는 귀여운 라벨 */
-  .kakao-section-label {
+  .photo-label {
+    position: absolute;
+    z-index: 2;
+    bottom: -4px;
+    right: -10px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 4px 13px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-soft);
+    letter-spacing: 1.5px;
+  }
+
+  /* ── name ── */
+  .name-block {
     text-align: center;
-    margin-bottom: 8px;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--text-mid);
-    text-transform: uppercase;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: riseUp 0.8s 0.35s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+
+  .name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 46px;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .name em {
+    font-style: italic;
+    color: var(--text-soft);
+    font-size: 38px;
+  }
+
+  .name-dots {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-  }
-
-  .kakao-section-label::before,
-  .kakao-section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(242,167,179,0.4));
-  }
-
-  .kakao-section-label::after {
-    background: linear-gradient(90deg, rgba(242,167,179,0.4), transparent);
-  }
-
-  /* 카드 자체 */
-  .kakao-card {
-    display: block;
-    text-decoration: none;
-    background: white;
-    border-radius: 18px;
-    border: 1.5px solid rgba(254,229,0,0.5);
-    box-shadow: 0 2px 16px rgba(254,229,0,0.12), 0 2px 8px rgba(200,160,180,0.08);
-    overflow: visible;
-    position: relative;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .kakao-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #FEE500, #ffe878, #FEE500);
-    border-radius: 18px 18px 0 0;
-  }
-
-  .kakao-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 32px rgba(254,229,0,0.2), 0 4px 12px rgba(200,160,180,0.1);
-  }
-
-  /* 오픈채팅 뱃지 */
-  .kakao-chip {
-    position: absolute;
-    top: -11px; right: 16px;
-    background: #FEE500;
-    color: #7a5e00;
+    gap: 10px;
     font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    padding: 3px 11px;
-    border-radius: 20px;
-    border: 2px solid white;
-    box-shadow: 0 2px 8px rgba(254,229,0,0.35);
-    white-space: nowrap;
+    letter-spacing: 2.5px;
+    color: var(--text-soft);
+    text-transform: uppercase;
   }
 
-  .kakao-inner {
+  .dot-div { width: 3px; height: 3px; border-radius: 50%; background: var(--butter-dark); }
+
+  /* ── divider ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--line);
+    margin: 0 0 32px;
+    opacity: 0;
+    animation: fadeIn 0.5s 0.5s forwards;
+  }
+
+  /* ── rows ── */
+  .rows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: riseUp 0.8s 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+
+  .row {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    gap: 20px;
+  }
+
+  .row:first-child { border-top: 1px solid var(--line); }
+
+  .row-key {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    width: 68px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .row-val {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  /* tags */
+  .chip {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 400;
+    border: 1px solid transparent;
+    line-height: 1.5;
+  }
+
+  .ch-y  { background: #FBF0C0; border-color: #E8D060; color: #7A6010; }
+  .ch-p  { background: #EDE8F8; border-color: #C8B8F0; color: #6040A0; }
+  .ch-pk { background: #FDE8EE; border-color: #F0B8C8; color: #B05070; }
+  .ch-m  { background: #E8F5EE; border-color: #A8D8BC; color: #3A7A58; }
+  .ch-b  { background: #E8F0F8; border-color: #A8C8E8; color: #305888; }
+
+  .plain-val {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* bar */
+  .bar-group { display: flex; flex-direction: column; gap: 9px; width: 100%; }
+  .bar-row { display: flex; align-items: center; gap: 10px; }
+  .bar-lbl { font-size: 10px; color: var(--text-soft); width: 60px; flex-shrink: 0; }
+  .bar-bg { flex: 1; height: 4px; background: var(--butter); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--butter-dark); animation: grow 1.4s cubic-bezier(0.34,1.1,0.64,1) both; }
+  .bar-fill.delay1 { animation-delay: 0.6s; }
+  .bar-fill.delay2 { animation-delay: 0.8s; }
+  .bar-fill.delay3 { animation-delay: 1.0s; }
+  @keyframes grow { from { width: 0 !important; } }
+  .bar-num { font-size: 10px; color: var(--text-soft); width: 22px; text-align: right; }
+
+  /* ── links ── */
+  .links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: riseUp 0.8s 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+
+  .links-title {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .lcard {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 15px 16px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.2s, transform 0.2s;
   }
 
-  /* 아이콘 */
-  .kakao-icon {
-    width: 50px; height: 50px;
-    border-radius: 15px;
-    background: #FEE500;
+  .lcard:hover {
+    background: var(--cream);
+    transform: translateY(-2px);
+  }
+
+  .lcard-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--butter);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 17px;
     flex-shrink: 0;
-    box-shadow: 0 2px 10px rgba(254,229,0,0.4);
-    font-size: 26px;
-    line-height: 1;
   }
 
-  /* 텍스트 */
-  .kakao-texts { flex: 1; min-width: 0; }
-
-  .kakao-eyebrow {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #c8a800;
-    margin-bottom: 3px;
-  }
-
-  .kakao-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-dark);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .kakao-url {
-    font-size: 10px;
-    color: #b8a8b0;
-    margin-top: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  /* 화살표 버튼 */
-  .kakao-btn {
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    background: #FEE500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    flex-shrink: 0;
-    transition: transform 0.2s ease;
-    color: #7a5e00;
-    font-weight: 700;
-  }
-
-  .kakao-card:hover .kakao-btn { transform: translateX(4px); }
+  .lcard-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 2px; }
+  .lcard-name { font-size: 12px; font-weight: 500; }
+  .lcard-arrow { margin-left: auto; font-size: 14px; color: var(--text-soft); transition: transform 0.2s; }
+  .lcard:hover .lcard-arrow { transform: translateX(3px); }
 
   /* ── stamp ── */
   .stamp {
+    opacity: 0;
+    animation: fadeIn 0.6s 0.9s forwards;
     text-align: center;
-    animation: fadeUp 0.9s 0.95s ease both;
   }
 
-  .stamp-inner {
+  .stamp-ring {
     display: inline-block;
-    border: 2px dashed rgba(242,167,179,0.5);
+    border: 1px dashed var(--butter-dark);
     border-radius: 50px;
-    padding: 8px 24px;
-    font-size: 11px;
-    color: var(--text-mid);
-    letter-spacing: 2px;
+    padding: 9px 28px;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--text-soft);
+    text-transform: uppercase;
   }
 
-  /* floating hearts */
+  /* floating click hearts */
   .heart-float {
     position: fixed;
-    font-size: 16px;
     pointer-events: none;
     z-index: 999;
-    animation: heartRise 2s ease forwards;
+    font-size: 14px;
+    animation: heartUp 1.6s ease forwards;
     opacity: 0;
   }
 
-  @keyframes heartRise {
-    0% { opacity: 1; transform: translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
+  @keyframes heartUp {
+    0%   { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-70px) scale(0.4); }
+  }
+
+  /* animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes riseUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="deco-bg" id="decoBg"></div>
-
-<div class="star-deco" style="top:8%;left:5%;animation-delay:0s">✦</div>
-<div class="star-deco" style="top:15%;right:8%;animation-delay:1s;color:var(--lilac)">✧</div>
-<div class="star-deco" style="top:40%;left:3%;animation-delay:2s;color:var(--warm-pink)">✦</div>
-<div class="star-deco" style="top:60%;right:5%;animation-delay:0.5s;color:var(--soft-yellow)">✦</div>
-<div class="star-deco" style="bottom:20%;left:7%;animation-delay:1.5s">✧</div>
-<div class="star-deco" style="bottom:10%;right:6%;animation-delay:2.5s;color:var(--mint)">✦</div>
-
-<div class="wrapper">
-
-  <!-- Header -->
-  <header class="site-header">
-    <div class="marquee-wrap">
-      <span class="marquee-text">
-        ♡ 부쟈의 프로필 &nbsp;·&nbsp; welcome to my page &nbsp;·&nbsp; ☆ bl gl hl 다먹음 ☆ &nbsp;·&nbsp; 마누라 앓이 전문 &nbsp;·&nbsp; ♡ 부쟈의 프로필 &nbsp;·&nbsp; welcome to my page &nbsp;·&nbsp; ☆ bl gl hl 다먹음 ☆ &nbsp;·&nbsp; 마누라 앓이 전문 &nbsp;·&nbsp;
-      </span>
-    </div>
-    <p class="site-title">꽃길만 걸어요 ✦ profile</p>
-  </header>
-
-  <!-- Photo -->
-  <div class="photo-section">
-    <div class="photo-frame">
-      <img src="https://raw.githubusercontent.com/dys1537-netizen/obj/refs/heads/main/from-PixAI-2006824781371567093-1.png" alt="부쟈 프로필" />
-      <span class="photo-badge badge-top">♡ 부쟈</span>
-      <span class="photo-badge badge-bottom">성인 ✦</span>
+  <!-- ticker -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-text">♡ 부쟈의 프로필 &nbsp;·&nbsp; bl gl hl 다먹음 &nbsp;·&nbsp; 마누라 앓이 전문 &nbsp;·&nbsp; 꽃길만 걸어요 &nbsp;·&nbsp; 블언블 &nbsp;·&nbsp; 성인 &nbsp;·&nbsp;</span>
+      <span class="ticker-text">♡ 부쟈의 프로필 &nbsp;·&nbsp; bl gl hl 다먹음 &nbsp;·&nbsp; 마누라 앓이 전문 &nbsp;·&nbsp; 꽃길만 걸어요 &nbsp;·&nbsp; 블언블 &nbsp;·&nbsp; 성인 &nbsp;·&nbsp;</span>
     </div>
   </div>
 
-  <!-- Name -->
-  <div class="name-section">
-    <div class="name-tag">부쟈</div>
-    <p class="name-sub">성인 &nbsp;·&nbsp; 블언블 &nbsp;·&nbsp; 마누라 앓이 95%</p>
+  <!-- photo -->
+  <div class="photo-wrap">
+    <div class="photo-deco"></div>
+    <img
+      class="photo"
+      src="https://raw.githubusercontent.com/dys1537-netizen/obj/refs/heads/main/from-PixAI-2006824781371567093-1.png"
+      alt="부쟈"
+    />
+    <span class="photo-label">성인 ✦</span>
   </div>
 
-  <!-- Info cards -->
-  <div class="cards-grid">
-    <div class="card">
-      <span class="card-emoji">🌸</span>
-      <div class="card-label">Platform</div>
-      <div class="card-value">
-        <span class="tag tag-pink">팅글</span>
-        <span class="tag tag-purple">블룸</span>
-        <span class="tag tag-yellow">로판</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-emoji">🐻</span>
-      <div class="card-label">트윗 성향</div>
-      <div class="card-value">
-        <span class="tag tag-pink">맘찍</span>
-        <span class="tag tag-purple">일상</span>
-        <span class="tag tag-mint">앓이</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="card-emoji">📚</span>
-      <div class="card-label">선호 장르</div>
-      <div class="card-value">다 먹음 🍰</div>
-    </div>
-
-    <div class="card">
-      <span class="card-emoji">💕</span>
-      <div class="card-label">커플링</div>
-      <div class="card-value">
-        <span class="tag tag-purple">BL</span>
-        <span class="tag tag-pink">GL</span>
-        <span class="tag tag-mint">HL</span><br>
-        <span style="font-size:11px;color:var(--text-mid)">다 먹음 ♡</span>
-      </div>
-    </div>
-
-    <div class="card full">
-      <span class="card-emoji">🚫</span>
-      <div class="card-label">NG</div>
-      <div class="card-value">알아서 피함 👀</div>
+  <!-- name -->
+  <div class="name-block">
+    <div class="name">부쟈 <em>♡</em></div>
+    <div class="name-dots">
+      <span>성인</span>
+      <span class="dot-div"></span>
+      <span>블언블</span>
+      <span class="dot-div"></span>
+      <span>마누라 앓이 95%</span>
     </div>
   </div>
 
-  <!-- Activity bars -->
-  <div class="activity-section">
-    <div class="card" style="margin-bottom:0;border-radius:18px;">
-      <span class="card-emoji">🎯</span>
-      <div class="card-label" style="margin-bottom:12px;">활동 성향</div>
-      <div class="activity-bars">
-        <div class="bar-row">
-          <span class="bar-label">마누라 앓이</span>
-          <div class="bar-track"><div class="bar-fill pink" style="width:95%"></div></div>
-          <span class="bar-pct">95%</span>
-        </div>
-        <div class="bar-row">
-          <span class="bar-label">소비</span>
-          <div class="bar-track"><div class="bar-fill purple" style="width:40%"></div></div>
-          <span class="bar-pct">4%</span>
-        </div>
-        <div class="bar-row">
-          <span class="bar-label">제작</span>
-          <div class="bar-track"><div class="bar-fill yellow" style="width:10%"></div></div>
-          <span class="bar-pct">1%</span>
+  <div class="divider"></div>
+
+  <!-- info rows -->
+  <div class="rows">
+
+    <div class="row">
+      <span class="row-key">Platform</span>
+      <div class="row-val">
+        <a href="https://tingle.chat/chat/my/profile?tab=characters" target="_blank" class="chip ch-pk">팅글</a>
+        <a href="https://www.whif.io/profile/OBJ707" target="_blank" class="chip ch-p">위프</a>
+        <span class="chip ch-b">블룸</span>
+        <a href="https://rofan.ai/user/240e78f1-b357-40c4-b877-9839418f2208" target="_blank" class="chip ch-y">로판</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="row-key">트윗</span>
+      <div class="row-val">
+        <span class="chip ch-pk">맘찍</span>
+        <span class="chip ch-p">일상</span>
+        <span class="chip ch-m">앓이</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="row-key">활동</span>
+      <div class="row-val">
+        <div class="bar-group">
+          <div class="bar-row">
+            <span class="bar-lbl">마누라 앓이</span>
+            <div class="bar-bg"><div class="bar-fill delay1" style="width:95%;background:var(--pink);"></div></div>
+            <span class="bar-num">95%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-lbl">소비</span>
+            <div class="bar-bg"><div class="bar-fill delay2" style="width:40%"></div></div>
+            <span class="bar-num">4%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-lbl">제작</span>
+            <div class="bar-bg"><div class="bar-fill delay3" style="width:10%"></div></div>
+            <span class="bar-num">1%</span>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <span class="row-key">장르</span>
+      <div class="row-val">
+        <span class="plain-val">다 먹음 🍰</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="row-key">커플링</span>
+      <div class="row-val">
+        <span class="chip ch-p">BL</span>
+        <span class="chip ch-pk">GL</span>
+        <span class="chip ch-m">HL</span>
+        <span class="plain-val" style="font-size:11px;color:var(--text-soft)">· 다 먹음</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="row-key">NG</span>
+      <div class="row-val">
+        <span class="plain-val">알아서 피함 &nbsp;·&nbsp; 블언블</span>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Stamp -->
+  <!-- links -->
+  <div class="links">
+    <div class="links-title">✦ profiles ✦</div>
+
+    <a class="lcard" href="https://tingle.chat/chat/my/profile?tab=characters" target="_blank" rel="noopener">
+      <div class="lcard-icon">🌸</div>
+      <div>
+        <div class="lcard-label">Tingle</div>
+        <div class="lcard-name">팅글 프로필</div>
+      </div>
+      <div class="lcard-arrow">→</div>
+    </a>
+
+    <a class="lcard" href="https://www.whif.io/profile/OBJ707" target="_blank" rel="noopener">
+      <div class="lcard-icon">💜</div>
+      <div>
+        <div class="lcard-label">Whif</div>
+        <div class="lcard-name">위프 프로필</div>
+      </div>
+      <div class="lcard-arrow">→</div>
+    </a>
+
+    <a class="lcard" href="https://rofan.ai/user/240e78f1-b357-40c4-b877-9839418f2208" target="_blank" rel="noopener">
+      <div class="lcard-icon">📖</div>
+      <div>
+        <div class="lcard-label">Rofan</div>
+        <div class="lcard-name">로판 프로필</div>
+      </div>
+      <div class="lcard-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- stamp -->
   <div class="stamp">
-    <div class="stamp-inner">✦ 부쟈 · since 성인 · 꽃길만 ✦</div>
+    <div class="stamp-ring">✦ 부쟈 &nbsp;·&nbsp; since 성인 &nbsp;·&nbsp; 꽃길만 ✦</div>
   </div>
 
 </div>
 
 <script>
-  const bg = document.getElementById('decoBg');
-  const colors = ['#F2A7B3','#D9C5F0','#F9EFA3','#C5E8D9','#F7D1D8'];
-  for (let i = 0; i < 12; i++) {
-    const b = document.createElement('div');
-    b.className = 'bubble';
-    const size = 30 + Math.random() * 60;
-    b.style.cssText = `
-      width:${size}px;height:${size}px;
-      left:${Math.random()*100}%;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      animation-duration:${12+Math.random()*16}s;
-      animation-delay:${Math.random()*10}s;
-    `;
-    bg.appendChild(b);
-  }
-
   document.body.addEventListener('click', (e) => {
-    const hearts = ['♡','♥','˚✧','✦','☆'];
+    const marks = ['♡', '✦', '✧', '☆'];
+    const colors = ['#F2B8C0', '#E8D060', '#C8B8F0', '#A8D8BC'];
     const h = document.createElement('div');
     h.className = 'heart-float';
-    h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+    h.textContent = marks[Math.floor(Math.random() * marks.length)];
     h.style.left = e.clientX + 'px';
     h.style.top = e.clientY + 'px';
-    h.style.color = ['#F2A7B3','#D9C5F0','#f0d060','#a5d8c0'][Math.floor(Math.random()*4)];
+    h.style.color = colors[Math.floor(Math.random() * colors.length)];
     document.body.appendChild(h);
-    setTimeout(() => h.remove(), 2000);
+    setTimeout(() => h.remove(), 1600);
   });
 </script>
 </body>
